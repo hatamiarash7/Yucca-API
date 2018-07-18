@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Item;
+use App\Libraries\JDF;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -33,11 +34,12 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $name = $request->get('name');
-        $important = $request->get('important');
+
+        $jdf = new JDF();
 
         $item = new Item();
         $item->name = $name;
-        $item->important = $important;
+        $item->create_date = $jdf->getTimestamp();
         $item->save();
 
         if ($item)
