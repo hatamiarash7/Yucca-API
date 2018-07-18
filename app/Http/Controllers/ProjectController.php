@@ -31,6 +31,28 @@ class ProjectController extends Controller
 
         $users = User::all();
         foreach ($users as $user)
-        $project->users()->attach($user);
+            $project->users()->attach($user);
+    }
+
+    public function update(Request $request, $project)
+    {
+        $project = Project::find($project);
+
+        $project->update($request->all());
+
+        return response()->json([
+            'error' => false
+        ], 200);
+
+    }
+
+    public function destroy($project)
+    {
+        $project = Project::find($project);
+        $project->delete();
+
+        return response()->json([
+            'error' => false
+        ], 200);
     }
 }

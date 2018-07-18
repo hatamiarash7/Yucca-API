@@ -15,4 +15,14 @@ class UserController extends Controller
             'projects' => $user->projects
         ], 200);
     }
+
+    public function update(Request $request, $user){
+        $user = User::find($user);
+
+        $user ->update($request->all());
+
+        return response()->json([
+            'error'=>false
+        ],200);
+    }
 }

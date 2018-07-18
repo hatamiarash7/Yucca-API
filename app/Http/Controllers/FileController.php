@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\File;
+use App\Libraries\JDF;
 use Illuminate\Http\Request;
 
 class FileController extends Controller
@@ -10,9 +11,11 @@ class FileController extends Controller
     public function store(Request $request)
     {
         $name = $request->get('name');
+        $jdf = new JDF();
 
         $file = new File();
         $file->name = $name;
+        $file->create_date = $jdf->getTimestamp();
         $file->save();
 
         if ($file)
