@@ -21,6 +21,8 @@ class CreateItemsTable extends Migration
             $table->tinyInteger('important')->default('0');
             $table->tinyInteger('complete')->default('0');
             $table->text('description')->nullable();
+            $table->integer('project_id')->unsigned()->index()->nullable();
+            $table->foreign('project_id')->references('id')->on('projects');
             $table->timestamps();
         });
     }
