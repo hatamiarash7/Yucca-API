@@ -13,17 +13,15 @@ class ItemController extends Controller
         $item = Item::all();
 
         return response()->json([
-
             'error' => false,
             'items' => $item
-
         ], 200);
     }
 
     public function show($item)
     {
-
         $item = Item::find($item);
+
         return response()->json([
             'error' => false,
             'item' => $item,
@@ -56,20 +54,20 @@ class ItemController extends Controller
     public function update(Request $request, $item)
     {
         $item = Item::find($item);
-        $item = update($request->all());
+        $item->update($request->all());
 
         return response()->json([
             'error' => false
         ], 200);
     }
 
-
-    public function destroy($item){
+    public function destroy($item)
+    {
         $item = Item::find($item);
-        $item ->delete();
+        $item->delete();
 
         return response()->json([
-            'error'=>false
-        ],200);
+            'error' => false
+        ], 200);
     }
 }
